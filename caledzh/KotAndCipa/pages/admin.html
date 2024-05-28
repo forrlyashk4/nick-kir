@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/authoriza.css" />
     <link rel="stylesheet" href="../styles/admin.css" />
     <title>Tortotoro</title>
   </head>
@@ -24,8 +25,7 @@
       </div>
       <div class="categoryList list-shift">
         <button id="orders">Заказы</button>
-        <button id="peeking">Назначение сотрудников</button>
-        <button id="manage">Управление сменами</button>
+        <button id="choosing">Назначение сотрудников</button>
       </div>
     </section>
 
@@ -39,8 +39,73 @@
     </section>
 
     <section class="doingBlock register">
-      <h2>Регистрация нового пользователя</h2>
-      <!-- todo: добавить логин от кирилла -->
+      <div class="autoriza regBlock">
+        <div class="login-container">
+          <h2>Регистрация нового<br />пользователя</h2>
+          <form action="/login" method="POST">
+            <input type="text" name="name" placeholder="Имя" required />
+            <input type="text" name="username" placeholder="Логин" required />
+            <input
+              type="password"
+              name="password"
+              placeholder="Пароль"
+              required
+            />
+            <select name="role" id="role">
+              <option value="cooker">Повар</option>
+              <option value="waiter">Официант</option>
+              <option value="admin">Админ</option>
+            </select>
+            <input type="submit" value="Войти" />
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="doingBlock orders">
+      <h2>Просмотр заказов за смену</h2>
+      <form action="#">
+        <select name="shift" id="shift" aria-placeholder="Выберите смену">
+          <option value="14-11-2023">14-11-2023</option>
+          <option value="16-05-2024">16-05-2024</option>
+        </select>
+      </form>
+
+      <ul>
+        <li>
+          <h3>Заказ #24</h3>
+          <ul>
+            <li>Хот-дог</li>
+            <li>Сырная тарелочка</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Заказ #24</h3>
+          <ul>
+            <li>Хот-дог</li>
+            <li>Сырная тарелочка</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section class="doingBlock choosing">
+      <h2>Управление сменой</h2>
+      <div class="form-group">
+        <label for="shift-date">Дата смены</label>
+        <input type="date" id="shift-date" />
+      </div>
+      <div class="form-group">
+        <label for="employee-name">Добавить работника</label>
+        <input
+          type="text"
+          id="employee-name"
+          placeholder="Введите имя работника"
+        />
+        <button id="add-employee">Добавить</button>
+      </div>
+      <ul class="employees-list" id="employees-list"></ul>
+      <button id="save-shift">Сохранить смену</button>
     </section>
 
     <script src="../scripts/admin.js"></script>

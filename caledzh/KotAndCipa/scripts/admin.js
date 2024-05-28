@@ -1,54 +1,119 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let currentCategory = null;
+  // Инициализация
+  let currentMainCategory = null;
+  let currentSubCategory = null;
 
-  const mainButtons = document
-    .querySelector(".list-main")
-    .querySelectorAll("button");
+  // Элементы главного уровня
+  const mainButtons = document.querySelectorAll(".list-main button");
   const staffButton = mainButtons[0];
   const shiftButton = mainButtons[1];
   const staffContent = document.querySelector(".list-staff");
   const shiftContent = document.querySelector(".list-shift");
+  const layoffBtn = document.querySelector("#layoff");
+  const regBtn = document.querySelector("#reg");
+  const ordersBtn = document.querySelector("#orders");
+  const choosingBtn = document.querySelector("#choosing");
+  const layoffContent = document.querySelector(".layoff");
+  const regContent = document.querySelector(".register");
+  const ordersContent = document.querySelector(".orders");
+  const choosingContent = document.querySelector(".choosing");
 
-  staffButton.addEventListener("click", (e) => {
-    currentCategory = "staff";
-    changeCategoryState(currentCategory);
-  });
+  // Функция для скрытия всех контентов
+  function hideAllContents() {
+    document
+      .querySelectorAll(".doingBlock")
+      .forEach((block) => (block.style.display = "none"));
+    staffContent.style.display = "none";
+    shiftContent.style.display = "none";
+  }
 
-  shiftButton.addEventListener("click", (e) => {
-    currentCategory = "shift";
-    changeCategoryState(currentCategory);
-  });
+  // Функция для сброса всех активных классов кнопок
+  function resetAllActiveButtons() {
+    document
+      .querySelectorAll("button")
+      .forEach((button) => button.classList.remove("button-active"));
+  }
 
-  function changeCategoryState(newState) {
-    console.log(newState);
-    switch (newState) {
+  // Функция для изменения состояния главной категории
+  function changeMainCategoryState(newCategory) {
+    resetAllActiveButtons();
+    hideAllContents();
+
+    switch (newCategory) {
       case "staff":
         staffButton.classList.add("button-active");
         staffContent.style.display = "block";
-        shiftButton.classList.remove("button-active");
-        shiftContent.style.display = "none";
         break;
       case "shift":
-        staffButton.classList.remove("button-active");
-        staffContent.style.display = "none";
         shiftButton.classList.add("button-active");
         shiftContent.style.display = "block";
         break;
-      default:
-        staffButton.classList.remove("button-active");
-        staffContent.style.display = "none";
-        shiftButton.classList.remove("button-active");
-        shiftContent.style.display = "none";
-        break;
     }
+
+    currentMainCategory = newCategory;
   }
 
-  changeCategoryState(currentCategory);
-});
+  // Функция для изменения состояния подкатегории
+  function changeSubCategoryState(newSubCategory) {
+    resetAllActiveButtons();
+    hideAllContents();
 
-document.addEventListener("DOMContentLoaded", () => {
-  const staffContent = document.querySelector(".list-staff");
-  const shiftContent = document.querySelector(".list-shift");
-  const layoffBtn = staffContent.querySelector("#layoff");
-  const regBtn = staffContent.querySelector("#reg");
+    switch (newSubCategory) {
+      case "layoff":
+      case "reg":
+        // Активируем основную категорию staff
+        staffButton.classList.add("button-active");
+        staffContent.style.display = "block";
+        break;
+      case "orders":
+      case "choosing":
+      case "manage":
+        // Активируем основную категорию shift
+        shiftButton.classList.add("button-active");
+        shiftContent.style.display = "block";
+        break;
+    }
+
+    // Активируем подкатегорию
+    switch (newSubCategory) {
+      case "layoff":
+        layoffBtn.classList.add("button-active");
+        layoffContent.style.display = "block";
+        break;
+      case "reg":
+        regBtn.classList.add("button-active");
+        regContent.style.display = "block";
+        break;
+      case "orders":
+        ordersBtn.classList.add("button-active");
+        ordersContent.style.display = "block";
+        break;
+      case "choosing":
+        choosingBtn.classList.add("button-active");
+        choosingContent.style.display = "block";
+        break;
+      case "manage":
+        manageBtn.classList.add("button-active");
+        manageContent.style.display = "block";
+        break;
+    }
+
+    currentSubCategory = newSubCategory;
+  }
+
+  // Обработчики событий для кнопок главного уровня
+  staffButton.addEventListener("click", () => changeMainCategoryState("staff"));
+  shiftButton.addEventListener("click", () => changeMainCategoryState("shift"));
+
+  // Обработчики событий для кнопок подкатегорий
+  layoffBtn.addEventListener("click", () => changeSubCategoryState("layoff"));
+  regBtn.addEventListener("click", () => changeSubCategoryState("reg"));
+  ordersBtn.addEventListener("click", () => changeSubCategoryState("orders"));
+  choosingBtn.addEventListener("click", () =>
+    changeSubCategoryState("choosing")
+  );
+
+  // Инициализация начального состояния
+  hideAllContents();
+  changeMainCategoryState(currentMainCategory);
 });

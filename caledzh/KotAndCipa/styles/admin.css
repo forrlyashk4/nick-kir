@@ -37,6 +37,15 @@
   display: none;
 }
 
+.register {
+  margin: 0 auto;
+  max-width: 540px;
+
+  h2 {
+    text-align: center;
+  }
+}
+
 .layoff {
   margin: 0 auto;
   max-width: 540px;
@@ -63,4 +72,85 @@
     cursor: pointer;
     padding-bottom: 10px;
   }
+}
+
+.regBlock {
+  height: auto;
+  background-color: transparent;
+
+  select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+}
+
+.orders {
+  margin: 0 auto;
+  max-width: 540px;
+
+  h2 {
+    text-align: center;
+  }
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+    overflow-y: auto;
+    max-height: 200px;
+  }
+
+  select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+}
+
+.choosing {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-group input,
+.form-group select,
+.form-group button {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+.employees-list {
+  list-style-type: none;
+  padding: 0;
+}
+.employees-list li {
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+}
+.employees-list li button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
